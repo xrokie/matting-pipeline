@@ -3,28 +3,22 @@ set -euo pipefail
 
 ROOT="${ROOT:-$HOME/matting}"
 
-RSYNC_EXCLUDES=(
-  --exclude ".DS_Store"
-  --exclude "._*"
-  --exclude "__pycache__/"
-  --exclude "*.pyc"
-  --exclude "*.pt"
-  --exclude "*.pth"
-)
+echo "[INFO] service wrappers are kept in place in this repository:"
+echo "       $ROOT/sam3/services"
+echo "       $ROOT/sam3/tools"
+echo "       $ROOT/MatAnyone2/services"
 
-echo "[INFO] syncing SAM3 service wrapper"
-rsync -av --delete "${RSYNC_EXCLUDES[@]}" \
-  "$ROOT/app/sam3/services/" \
-  "$ROOT/sam3/services/"
+for path in \
+  "$ROOT/sam3/services/mask_service_cli.py" \
+  "$ROOT/sam3/services/mask_service/sam3_mask_service.py" \
+  "$ROOT/sam3/tools/mask_ops.py" \
+  "$ROOT/MatAnyone2/services/matting_project_cli.py" \
+  "$ROOT/MatAnyone2/services/sam2_service/sam2_point_server.py"
+do
+  if [[ ! -f "$path" ]]; then
+    echo "[ERROR] missing service wrapper: $path"
+    exit 1
+  fi
+done
 
-echo "[INFO] syncing SAM3 helper tools"
-rsync -av --delete "${RSYNC_EXCLUDES[@]}" \
-  "$ROOT/app/sam3/tools/" \
-  "$ROOT/sam3/tools/"
-
-echo "[INFO] syncing MatAnyone2 service wrapper"
-rsync -av --delete "${RSYNC_EXCLUDES[@]}" \
-  "$ROOT/app/MatAnyone2/services/" \
-  "$ROOT/MatAnyone2/services/"
-
-echo "[DONE] service wrappers are in sync"
+echo "[DONE] service wrapper layout looks valid; no sync step is required."

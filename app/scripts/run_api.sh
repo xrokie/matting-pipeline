@@ -27,6 +27,6 @@ fi
 # ---- Start FastAPI ----
 cd "$MATTING_ROOT/app"
 if [[ ! -f "$MATTING_ROOT/app/frontend/dist/index.html" ]]; then
-  echo "[WARN] frontend dist not found. Run: bash $MATTING_ROOT/app/scripts/smoke_test_wsl_frontend_build.sh"
+  echo "[WARN] frontend dist not found. Run: bash $MATTING_ROOT/app/scripts/smoke/smoke_test_wsl_frontend_build.sh"
 fi
 exec uvicorn api_server.main:app --host "$HOST" --port "$PORT"
