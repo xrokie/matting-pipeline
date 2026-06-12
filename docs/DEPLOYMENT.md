@@ -106,7 +106,9 @@ pip install numpy Pillow
 
 ## 4. 模型 Checkpoint
 
-创建目录：
+本项目部署需要三个 checkpoint。生产环境建议显式下载并放到固定路径，不依赖首次请求时自动下载。
+
+### 一键创建目录
 
 ```bash
 mkdir -p ~/matting/sam3/models/sam3.1
@@ -122,7 +124,7 @@ mkdir -p ~/matting/sam2/checkpoints
 ~/matting/sam2/checkpoints/sam2.1_hiera_base_plus.pt
 ```
 
-### SAM3.1
+### SAM3.1 Checkpoint
 
 SAM3.1 checkpoint 统一走 ModelScope，不走 Hugging Face 授权流程。
 
@@ -141,33 +143,80 @@ modelscope download \
   --model facebook/sam3.1 \
   sam3.1_multiplex.pt \
   --local_dir ~/matting/sam3/models/sam3.1
+
+test -f ~/matting/sam3/models/sam3.1/sam3.1_multiplex.pt
 ```
 
-如果生产环境使用内部镜像或离线包，请保证最终文件名和路径一致：
+如果下载后文件落在子目录中，移动到约定路径：
+
+```bash
+find ~/matting/sam3/models/sam3.1 -name sam3.1_multiplex.pt -print
+mv /path/to/sam3.1_multiplex.pt ~/matting/sam3/models/sam3.1/sam3.1_multiplex.pt
+```
+
+如果生产环境使用内部镜像或离线包，也只需要保证最终文件名和路径一致：
 
 ```text
 ~/matting/sam3/models/sam3.1/sam3.1_multiplex.pt
 ```
 
-### MatAnyone2
+### MatAnyone2 Checkpoint
 
 ```bash
 curl -L \
   https://github.com/pq-yang/MatAnyone2/releases/download/v1.0.0/matanyone2.pth \
   -o ~/matting/MatAnyone2/pretrained_models/matanyone2.pth
+
+test -f ~/matting/MatAnyone2/pretrained_models/matanyone2.pth
 ```
 
 MatAnyone2 也能在首次推理时自动下载，但生产部署建议提前放好，避免首次请求才触发外网下载。
 
-### SAM2.1
+如果使用离线包：
 
-从你的 SAM2.1 官方来源下载 `hiera_base_plus` checkpoint，并放到：
+```bash
+cp /path/to/matanyone2.pth ~/matting/MatAnyone2/pretrained_models/matanyone2.pth
+```
+
+### SAM2.1 Checkpoint
+
+SAM2.1 使用 `hiera_base_plus` checkpoint。官方下载脚本中的 base-plus 文件地址为：
 
 ```text
-~/matting/sam2/checkpoints/sam2.1_hiera_base_plus.pt
+https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_base_plus.pt
+```
+
+下载命令：
+
+```bash
+curl -L \
+  https://dl.fbaipublicfiles.com/segment_anything_2/092824/sam2.1_hiera_base_plus.pt \
+  -o ~/matting/sam2/checkpoints/sam2.1_hiera_base_plus.pt
+
+test -f ~/matting/sam2/checkpoints/sam2.1_hiera_base_plus.pt
 ```
 
 如果该文件缺失，SAM2 点选服务启动会失败。
+
+如果使用离线包：
+
+```bash
+cp /path/to/sam2.1_hiera_base_plus.pt ~/matting/sam2/checkpoints/sam2.1_hiera_base_plus.pt
+```
+
+### 离线部署汇总
+
+离线机器只需要把三个文件拷贝到固定路径：
+
+```bash
+mkdir -p ~/matting/sam3/models/sam3.1
+mkdir -p ~/matting/MatAnyone2/pretrained_models
+mkdir -p ~/matting/sam2/checkpoints
+
+cp /path/to/sam3.1_multiplex.pt ~/matting/sam3/models/sam3.1/sam3.1_multiplex.pt
+cp /path/to/matanyone2.pth ~/matting/MatAnyone2/pretrained_models/matanyone2.pth
+cp /path/to/sam2.1_hiera_base_plus.pt ~/matting/sam2/checkpoints/sam2.1_hiera_base_plus.pt
+```
 
 ### 校验 Checkpoint
 
