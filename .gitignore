@@ -1,0 +1,71 @@
+# Model checkpoints (huge binary files)
+*.pt
+*.pth
+
+# Video / image outputs
+*.mp4
+*.mov
+*.avi
+*.tar.gz
+
+# Project data (per-user tasks)
+projects/
+
+# Node
+node_modules/
+dist/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+
+# macOS
+.DS_Store
+._*
+
+# IDE
+.vscode/
+.idea/
+
+# Backups
+*_backup_*.tar.gz
+matting_app*.tar.gz
+
+# SAM2 checkpoints
+sam2/checkpoints/
+
+# SAM3 model weights
+sam3/models/
+
+# MatAnyone2 pretrained
+MatAnyone2/pretrained_models/
+
+# Environment
+.venv/
+venv/
+
+# Upstream repo large assets
+MatAnyone2/inputs/
+MatAnyone2/assets/
+MatAnyone2/hugging_face/
+MatAnyone2/evaluation/
+MatAnyone2/docs/
+MatAnyone2/pretrained_models/
+sam3/models/
+sam3/.github/
+sam3/scripts/
+sam3/test/
+sam3/sam3.egg-info/
+sam3/sam3/agent/
+sam3/sam3/eval/
+sam3/sam3/perflib/
+sam3/sam3/train/
+app/sam3/
+app/MatAnyone2/
+app/projects/
+app/frontend/node_modules/
+app/frontend/dist/
+app_import/
+projects/

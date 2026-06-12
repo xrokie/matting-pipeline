@@ -1,0 +1,10 @@
+__pycache__/
+.vscode/
+.DS_Store
+hugging_face/assets/
+results/
+test_sample/
+pretrained_models/
+data/
+notebooks/
+.venv

@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "WebSearch",
+      "WebFetch(domain:github.com)",
+      "Bash(pkill -9 -f \"uvicorn\")",
+      "Bash(nohup /home/hpp/miniconda3/envs/matting_api/bin/python -m uvicorn api_server.main:app --host 0.0.0.0 --port 8000)",
+      "Read(//tmp/**)",
+      "Bash(curl -s http://127.0.0.1:8000/health)",
+      "Bash(curl -s http://127.0.0.1:8765/health)",
+      "Bash(npm run *)",
+      "Bash(pkill -9 -f uvicorn)",
+      "Bash(/home/hpp/miniconda3/envs/matting_api/bin/python -c ' *)",
+      "Bash(curl -s http://127.0.0.1:8001/api/projects/avatar_demo)",
+      "Bash(python3 -c ' *)",
+      "Bash(curl -s -X POST http://127.0.0.1:8001/api/projects/avatar_demo/masks/clear)",
+      "Bash(curl -s http://127.0.0.1:8001/health)",
+      "Bash(python3 -c \"import sys,json; print\\(json.load\\(sys.stdin\\)['status']\\)\")"
+    ]
+  }
+}
