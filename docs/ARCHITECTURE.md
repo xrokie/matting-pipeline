@@ -23,9 +23,13 @@ sam3/
   services/           API 调用的 SAM3.1 CLI/service wrapper
   tools/              mask 读写、overlay、合并工具
 
+sam2/
+  services/           SAM2.1 常驻点选服务 wrapper
+  checkpoints/         SAM2.1 checkpoint 目录，部署时放置
+
 MatAnyone2/
   matanyone2/         MatAnyone2 上游代码
-  services/           matting CLI、背景合成、SAM2 点选服务
+  services/           matting CLI、背景合成；保留 SAM2 旧兼容入口
 ```
 
 ## 进程与环境边界
@@ -146,7 +150,10 @@ created
 ```text
 sam3/services/
 sam3/tools/
+sam2/services/
 MatAnyone2/services/
 ```
+
+SAM2.1 服务的真实实现位于 `sam2/services/sam2_service/`。`MatAnyone2/services/sam2_service/` 只保留兼容 shim，旧命令仍可转发到新实现。
 
 本仓库不存在 `app/sam3` 或 `app/MatAnyone2` 这类权威源目录。`app/scripts/sync_services.sh` 仅做兼容性校验，不再复制文件。

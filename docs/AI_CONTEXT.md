@@ -75,8 +75,8 @@ sam3/services/mask_service/sam3_mask_service.py
 sam3/tools/mask_ops.py
 MatAnyone2/services/matting_project_cli.py
 MatAnyone2/services/matting_service/compose_bg.py
-MatAnyone2/services/sam2_service/sam2_point_server.py
-MatAnyone2/services/sam2_service/sam2_point_cli.py
+sam2/services/sam2_service/sam2_point_server.py
+sam2/services/sam2_service/sam2_point_cli.py
 ```
 
 脚本：
@@ -119,6 +119,7 @@ docs/ARCHITECTURE.md
 app/api_server/main.py
 app/api_server/mask_registry.py
 MatAnyone2/services/sam2_service/
+sam2/services/sam2_service/
 sam3/services/mask_service/sam3_mask_service.py
 ```
 

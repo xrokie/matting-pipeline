@@ -32,7 +32,8 @@ app/
     smoke/          非生产冒烟测试和构建检查
 
 sam3/               SAM3.1 上游代码和服务封装
-MatAnyone2/         MatAnyone2 上游代码和 matting/SAM2 封装
+sam2/               SAM2.1 点选服务封装和 checkpoint 目录
+MatAnyone2/         MatAnyone2 上游代码和 matting 封装
 docs/               项目权威文档
 projects/           运行时数据目录，部署时生成，不进 git
 ```

@@ -91,6 +91,8 @@ SAM2 点选服务会 import `sam2`。请在同一个 `matanyone2` 环境中，�
 configs/sam2.1/sam2.1_hiera_b+.yaml
 ```
 
+注意：SAM2.1 点选服务代码在仓库顶层 `sam2/services/sam2_service/`，但仍使用 `matanyone2` conda 环境启动，以复用同一套 PyTorch/CUDA 依赖。旧的 `MatAnyone2/services/sam2_service/` 只保留兼容入口。
+
 ### API 环境
 
 ```bash

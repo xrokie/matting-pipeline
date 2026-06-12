@@ -20,6 +20,7 @@
 - 当前仓库的 service wrapper 就地放在：
   - `sam3/services/`
   - `sam3/tools/`
+  - `sam2/services/`
   - `MatAnyone2/services/`
   本仓库不存在权威的 `app/sam3` 或 `app/MatAnyone2` 源目录。
 

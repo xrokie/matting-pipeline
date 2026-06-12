@@ -11,9 +11,12 @@ if curl -s "http://127.0.0.1:$SAM2_PORT/health" > /dev/null 2>&1; then
   echo "[INFO] SAM2 point server already running on port $SAM2_PORT"
 else
   echo "[INFO] Starting SAM2 point server..."
-  conda run -n matanyone2 python -m services.sam2_service.sam2_point_cli start \
-    --checkpoint "$MATTING_ROOT/sam2/checkpoints/sam2.1_hiera_base_plus.pt" \
-    --port "$SAM2_PORT" &
+  (
+    cd "$MATTING_ROOT/sam2"
+    conda run -n matanyone2 python -m services.sam2_service.sam2_point_cli start \
+      --checkpoint "$MATTING_ROOT/sam2/checkpoints/sam2.1_hiera_base_plus.pt" \
+      --port "$SAM2_PORT"
+  ) &
   # Wait for it to be ready
   for i in $(seq 1 30); do
     sleep 1
